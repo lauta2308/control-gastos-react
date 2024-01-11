@@ -1,9 +1,9 @@
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Mensaje from './Mensaje';
 import CerrarModal from '../img/cerrar.svg'
 
-const Modal = ({setModal, alternarModal, setAlternarModal, nuevoGasto}) => {
+const Modal = ({setModal, alternarModal, setAlternarModal, nuevoGasto, gastoEditar}) => {
 
     const [mensaje, setMensaje] = useState("");
 
@@ -18,10 +18,17 @@ const Modal = ({setModal, alternarModal, setAlternarModal, nuevoGasto}) => {
             setAlternarModal(false)
         }, 500)
     
- 
 
         
     }
+
+    useEffect(() => {
+            if(Object.keys(gastoEditar).length > 0){
+                setNombre(gastoEditar.nombre)
+                setCantidad(gastoEditar.cantidad)
+                setCategoria(gastoEditar.categoria)
+            }
+    }, [])
 
     const handleSubmit = e => {
 
