@@ -10,6 +10,8 @@ const Modal = ({setModal, alternarModal, setAlternarModal, nuevoGasto, gastoEdit
     const [nombre, setNombre] = useState("");
     const [cantidad, setCantidad] = useState("");
     const [categoria, setCategoria] = useState("");
+    const [id, setId] = useState("");
+    const [fecha, setFecha] = useState("");
 
     const handleModal = () => {
         setModal(false)
@@ -27,6 +29,9 @@ const Modal = ({setModal, alternarModal, setAlternarModal, nuevoGasto, gastoEdit
                 setNombre(gastoEditar.nombre)
                 setCantidad(gastoEditar.cantidad)
                 setCategoria(gastoEditar.categoria)
+                setId(gastoEditar.id),
+                setFecha(gastoEditar.fecha)
+               
             }
     }, [])
 
@@ -50,7 +55,9 @@ const Modal = ({setModal, alternarModal, setAlternarModal, nuevoGasto, gastoEdit
 
                 "nombre": nombre,
                 "cantidad": cantidad,
-                "categoria": categoria        
+                "categoria": categoria, 
+                "id": id,
+                "fecha": fecha       
             
             }
        );
@@ -66,7 +73,7 @@ const Modal = ({setModal, alternarModal, setAlternarModal, nuevoGasto, gastoEdit
 
         <form onSubmit={handleSubmit} className={`formulario ${alternarModal ? 'animar' : 'cerrar'} `}>
 
-            <legend>Control de gastos</legend>
+            <legend>{gastoEditar.nombre ? 'Editar Gasto' : 'Añadir Gasto'}</legend>
 
             {mensaje && <Mensaje
                 mensaje = {mensaje}
@@ -111,7 +118,7 @@ const Modal = ({setModal, alternarModal, setAlternarModal, nuevoGasto, gastoEdit
                         
                         </label>
 
-                        <select name="" id="categoria" onChange={(e) => setCategoria(e.target.value)}>
+                        <select name="" id="categoria" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
                                 <option value="">Seleccione</option>
                                 <option value="ahorro">Ahorro</option>
                                 <option value="comida">Comida</option>
@@ -124,7 +131,7 @@ const Modal = ({setModal, alternarModal, setAlternarModal, nuevoGasto, gastoEdit
                         </select>
             </div>
 
-            <input type="submit" value="Añadir Gasto" />
+            <input type="submit" value={gastoEditar.nombre ? 'Guardar Cambios' : 'Añadir Gasto'} />
          
         </form>
       

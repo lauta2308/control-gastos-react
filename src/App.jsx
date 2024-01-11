@@ -36,6 +36,7 @@ function App() {
   useEffect( () => {
 
     if(Object.keys(gastoEditar).length > 0){
+
       setModal(true)
  
   
@@ -49,10 +50,25 @@ function App() {
 
 
   const nuevoGasto = gasto => {
-    gasto.id = generarId();
-    gasto.fecha = Date.now();
 
-    setGastos([...gastos, gasto])
+    if(gasto.id){
+
+
+      const gastosActualizados = gastos.map(gastoState => 
+    
+        gastoState.id === gasto.id ? gasto : gastoState
+      )
+
+
+      setGastos(gastosActualizados)
+    } else {
+      gasto.id = generarId();
+      gasto.fecha = Date.now();
+  
+      setGastos([...gastos, gasto])
+
+    }
+  
   }
 
 
@@ -87,6 +103,8 @@ function App() {
     
   )
     }  
+
+
 
 
     {modal && <Modal 
