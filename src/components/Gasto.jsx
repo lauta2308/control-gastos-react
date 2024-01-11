@@ -32,7 +32,7 @@ const diccionarioIconos = {
 
 }
 
-const Gasto = ({gasto, setGastoEditar}) => {
+const Gasto = ({gasto, setGastoEditar, setGastoEliminar}) => {
 
   const {nombre, cantidad, categoria, fecha} = gasto;
 
@@ -47,8 +47,8 @@ const Gasto = ({gasto, setGastoEditar}) => {
 
    const trailingActions = () => (
      <TrailingActions>
-     <SwipeAction onClick={() => console.log("trailing..")}>
-           Editar
+     <SwipeAction onClick={() => setGastoEliminar(gasto)}>
+           Eliminar
      </SwipeAction>
 
    </TrailingActions>

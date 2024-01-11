@@ -21,6 +21,8 @@ function App() {
   
   const[gastoEditar, setGastoEditar] = useState({});
 
+  const[gastoEliminar, setGastoEliminar] = useState({});
+
   const handleModal = (() => {
 
     setModal(true)
@@ -49,6 +51,20 @@ function App() {
   }, [gastoEditar])
 
 
+  useEffect( () => {
+
+    if(Object.keys(gastoEliminar).length > 0){
+
+      const gastosActualizados = gastos.filter(gasto => gasto.id !== gastoEliminar.id)
+  
+      setGastos(gastosActualizados);
+    }
+
+
+  }, [gastoEliminar])
+
+
+
   const nuevoGasto = gasto => {
 
     if(gasto.id){
@@ -61,6 +77,7 @@ function App() {
 
 
       setGastos(gastosActualizados)
+      setGastoEditar({})
     } else {
       gasto.id = generarId();
       gasto.fecha = Date.now();
@@ -114,6 +131,8 @@ function App() {
       setAlternarModal = {setAlternarModal}
       nuevoGasto = {nuevoGasto}
       gastoEditar = {gastoEditar}
+      setGastoEditar = {setGastoEditar}
+
     />}
 
 
@@ -122,6 +141,7 @@ function App() {
       <ListadoGastos
         gastos= {gastos}
         setGastoEditar = {setGastoEditar}
+        setGastoEliminar = {setGastoEliminar}
       
       />    
     
