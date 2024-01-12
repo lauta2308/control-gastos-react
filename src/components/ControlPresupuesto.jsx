@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-const ControlPresupuesto = ({setGastos, gastos, presupuesto, setPresupuesto, isValidPresupuesto}) => {
+const ControlPresupuesto = ({setGastos, gastos, presupuesto, setPresupuesto, setIsValidPresupuesto}) => {
 
 
 
@@ -47,7 +47,7 @@ const ControlPresupuesto = ({setGastos, gastos, presupuesto, setPresupuesto, isV
       if(resultado){
         setGastos([])
         setPresupuesto(0)
-        isValidPresupuesto(false)
+        setIsValidPresupuesto(false)
       }
     })
    
