@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import NuevoPresupuesto from './NuevoPresupuesto'
 import ControlPresupuesto from './ControlPresupuesto';
 
-const Header = ({gastos, presupuesto, setPresupuesto, isValidPresupuesto, setIsValidPresupuesto}) => {
+const Header = ({setGastos, gastos, presupuesto, setPresupuesto, isValidPresupuesto, setIsValidPresupuesto}) => {
 
 
 
@@ -12,8 +12,11 @@ const Header = ({gastos, presupuesto, setPresupuesto, isValidPresupuesto, setIsV
      <h1>Planificador de Gastos</h1>
 
      {isValidPresupuesto ? <ControlPresupuesto 
+     setGastos = {setGastos}
      gastos = {gastos}
      presupuesto = {presupuesto}
+     setPresupuesto = {setPresupuesto}
+     isValidPresupuesto = {isValidPresupuesto}
      /> : 
       
       <NuevoPresupuesto

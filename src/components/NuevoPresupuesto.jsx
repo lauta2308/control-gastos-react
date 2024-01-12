@@ -16,8 +16,11 @@ const NuevoPresupuesto = ({presupuesto, setPresupuesto, setIsValidPresupuesto}) 
         return 
        } 
 
+      
+      localStorage.setItem("presupuesto", JSON.stringify(presupuesto));
        setMensaje("")
        setIsValidPresupuesto(true)
+      
        
     } 
 
